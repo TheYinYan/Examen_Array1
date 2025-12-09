@@ -184,12 +184,6 @@ public class App {
         if (!comprobarDatosIntroducidos())
             return;
 
-        // TODO: Implementar
-        // - Pedir el nombre del alumno
-        // - Buscar si existe con ArrayUtils.buscarPosicionNombre()
-        // - Si no existe, mostrar error
-        // - Si existe, pedir la nueva nota y validarla
-        // - Mostrar: "Nota de [nombre] modificada: X.XX -> Y.YY"
         String nombre = leerString("Introduce el nombre a buscar: ");
         int posiciónNom = ArrayUtils.buscarPosicionNombre(nombres, nombre);
         if (posiciónNom > -1) {

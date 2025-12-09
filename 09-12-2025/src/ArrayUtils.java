@@ -2,27 +2,17 @@ public class ArrayUtils {
     // ==================== NIVEL BÁSICO ====================
 
     public static boolean validarNota(double nota) {
-        // TODO: Implementar
-        // - Devolver true si la nota está entre 0 y 10
-        // - Devolver false en caso contrario
-
         return (nota >= 0 && nota <= 10);
     }
 
     public static void mostrarDatos(String[] nombres, double[] notas) {
-        // TODO: Implementar
-        // - Recorrer los arrays y mostrar cada alumno
-        // - Formato: "1. Juan: 7.50"
         for (int i = 0; i < notas.length; i++) {
             System.out.printf("%d. %s: %.2f%n", i + 1, nombres[i], notas[i]);
         }
     }
 
     public static double calcularMedia(double[] notas) {
-        // TODO: Implementar
-        // - Sumar todas las notas
-        // - Dividir entre el número de elementos
-        // - Devolver la media
+
         double media = 0;
         for (int i = 0; i < notas.length; i++) {
             media += notas[i];
@@ -34,9 +24,7 @@ public class ArrayUtils {
     // ==================== NIVEL INTERMEDIO ====================
 
     public static double buscarMaximo(double[] notas) {
-        // TODO: Implementar
-        // - Recorrer el array buscando el valor máximo
-        // - Devolver el valor máximo encontrado
+
         double max = 0;
         for (int i = 0; i < notas.length; i++) {
             if (notas[i] > max) {
@@ -47,9 +35,7 @@ public class ArrayUtils {
     }
 
     public static double buscarMinimo(double[] notas) {
-        // TODO: Implementar
-        // - Recorrer el array buscando el valor mínimo
-        // - Devolver el valor mínimo encontrado
+
         double min = 10;
         for (int i = 0; i < notas.length; i++) {
             if (notas[i] < min) {
@@ -60,10 +46,7 @@ public class ArrayUtils {
     }
 
     public static int buscarPosicionNota(double[] notas, double valor) {
-        // TODO: Implementar
-        // - Recorrer el array buscando el valor
-        // - Si lo encuentra, devolver la posición (índice)
-        // - Si no lo encuentra, devolver -1
+
         int posición = -1;
         for (int i = 0; i < notas.length && posición == -1; i++) {
             if (notas[i] == valor) {
@@ -74,9 +57,7 @@ public class ArrayUtils {
     }
     
     public static int contarAprobados(double[] notas) {
-        // TODO: Implementar
-        // - Contar cuántas notas son >= 5
-        // - Devolver el contador
+
         int aprobados = 0;
         for (int i = 0; i < notas.length; i++) {
             if (notas[i] >= 5) {
@@ -89,14 +70,10 @@ public class ArrayUtils {
     // ==================== NIVEL AVANZADO ====================
 
     public static int buscarPosicionNombre(String[] nombres, String nombre) {
-        // TODO: Implementar
-        // - Recorrer el array buscando el nombre (ignorar mayúsculas/minúsculas)
-        // - Usar equalsIgnoreCase() para comparar
-        // - Si lo encuentra, devolver la posición (índice)
-        // - Si no lo encuentra, devolver -1
+
          int posición = -1;
         for (int i = 0; i < nombres.length && posición == -1; i++) {
-            if (nombres[i].equals(nombre)) {
+            if (nombres[i].equalsIgnoreCase(nombre)) {
                 posición = i;
             }
         }
