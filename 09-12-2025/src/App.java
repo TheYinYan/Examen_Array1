@@ -106,19 +106,17 @@ public class App {
     // ==================== NIVEL BÁSICO ====================
 
     public static void introducirDatos() {
-        // TODO: Implementar
-        // - Recorrer los arrays y pedir nombre y nota de cada alumno
-        // - Validar que la nota esté entre 0 y 10 usando ArrayUtils.validarNota()
-        // - Al terminar, poner datosIntroducidos = true
+
         for (int i = 0; i < NUM_ALUMNOS; i++) {
             System.out.printf("--- Alumno %d ---%n", i + 1);
-            nombres[i] = System.console().readLine("Nombre: ");
-            notas[i] = Integer.parseInt(System.console().readLine("Nota: "));
+
+            nombres[i] = leerString("Nombre: ");
+            notas[i] = leerEntero("Nota: ");
 
             while (!ArrayUtils.validarNota(notas[i])) {
                 System.out.println("La nota tiene que estar entre 0 y 10");
 
-                notas[i] = Integer.parseInt(System.console().readLine("Nota: "));
+                notas[i] = leerEntero("Nota: ");
             }
         }
         datosIntroducidos = true;
@@ -160,15 +158,11 @@ public class App {
         if (!comprobarDatosIntroducidos())
             return;
 
-        // TODO: Implementar
-        // - Usar ArrayUtils.contarAprobados() para contar aprobados
-        // - Calcular suspensos restando al total
-        // - Calcular y mostrar el porcentaje de aprobados
-        int aprobados = ArrayUtils.contarAprobados(notas);
-        System.out.printf("Aprobados: %d alumnos%n", aprobados);
-        System.out.printf("Suspendidos: %d alumnos%n", NUM_ALUMNOS - aprobados);
+        double aprobados = ArrayUtils.contarAprobados(notas);
+        System.out.printf("Aprobados: %.0f alumnos%n", aprobados);
+        System.out.printf("Suspendidos: %.0f alumnos%n", NUM_ALUMNOS - aprobados);
 
-        System.out.printf("Porcentaje de aprobados: %.2f%s", aprobados * 10);
+        System.out.printf("Porcentaje de aprobados: %.2f %%", aprobados * 10);
     }
 
     // ==================== NIVEL AVANZADO ====================
@@ -181,13 +175,9 @@ public class App {
         int posiciónNom = ArrayUtils.buscarPosicionNombre(nombres, nombre);
 
         if (posiciónNom > -1) {
-            notas[posiciónNom] = Integer.parseInt(System.console().readLine("Introduce la nueva nota: "));
-
-            while (!ArrayUtils.validarNota(notas[posiciónNom])) {
-                System.out.println("La nota tiene que estar entre 0 y 10");
-                notas[posiciónNom] = Integer.parseInt(System.console().readLine("Introduce la nueva nota: "));
-            }
-        } else System.out.printf("El alumno '%s' no existe en la clase%n", nombre);
+            System.out.printf("Alumno encontrado: %s con nota %.2f", nombre, notas[posiciónNom]);
+        } else
+            System.out.printf("El alumno '%s' no existe en la clase%n", nombre);
     }
 
     public static void modificarNota() {
@@ -200,14 +190,19 @@ public class App {
         // - Si no existe, mostrar error
         // - Si existe, pedir la nueva nota y validarla
         // - Mostrar: "Nota de [nombre] modificada: X.XX -> Y.YY"
-        String nombre = System.console().readLine("Introduce el nombre a buscar: ");
+        String nombre = leerString("Introduce el nombre a buscar: ");
         int posiciónNom = ArrayUtils.buscarPosicionNombre(nombres, nombre);
         if (posiciónNom > -1) {
-            notas[posiciónNom] = Integer.parseInt(System.console().readLine("Introduce la nota nueva "));
+            notas[posiciónNom] = leerEntero("Introduce la nota nueva ");
+
+            while (!ArrayUtils.validarNota(notas[posiciónNom])) {
+                System.out.println("La nota tiene que estar entre 0 y 10");
+                notas[posiciónNom] = leerEntero("Nota: ");
+            }
+            System.out.printf("Nota de %s modificada: %.2f", nombres[posiciónNom], notas[posiciónNom]);
         } else {
             System.out.printf("El alumno '%s' no existe en la clase%n", nombre);
         }
-
     }
 
     public static void ordenarPorNota() {
