@@ -55,7 +55,7 @@ public class ArrayUtils {
         }
         return posición;
     }
-    
+
     public static int contarAprobados(double[] notas) {
 
         int aprobados = 0;
@@ -71,7 +71,7 @@ public class ArrayUtils {
 
     public static int buscarPosicionNombre(String[] nombres, String nombre) {
 
-         int posición = -1;
+        int posición = -1;
         for (int i = 0; i < nombres.length && posición == -1; i++) {
             if (nombres[i].equalsIgnoreCase(nombre)) {
                 posición = i;
